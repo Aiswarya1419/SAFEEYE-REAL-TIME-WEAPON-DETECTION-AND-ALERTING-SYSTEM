@@ -1,0 +1,6 @@
+names:
+- weapon
+- non-weapon
+nc: 2
+train: C:\Users\Aiswarya\Desktop\dataset_yolo\images\train
+val: C:\Users\Aiswarya\Desktop\dataset_yolo\images\val

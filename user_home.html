@@ -1,0 +1,831 @@
+{% load static %}
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>User Home</title>
+  <meta name="description" content="Real-Time Weapon Detection and Alerting System for enhanced security.">
+  <meta name="keywords" content="weapon detection, security, AI, real-time, surveillance, safety">
+
+  <!-- Favicons -->
+  <link href="{% static 'sta/assets/img/tit_logo.jpg' %}" rel="icon">
+  <link href="selogo.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <link href="{% static 'sta/assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'staassets/vendor/bootstrap-icons/bootstrap-icons.css'  %}" rel="stylesheet">
+  <link href="{% static 'staassets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'sta/assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'sta/assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="{% static 'sta/assets/css/main.css' %}" rel="stylesheet">
+  <style>
+      .dropdown-menu {
+        display: none;
+        position: absolute;
+        background: white;
+        padding: 10px;
+        list-style: none;
+        box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+      }
+
+      .dropdown:hover .dropdown-menu {
+        display: block;
+      }
+
+      .dropdown-menu li {
+        padding: 5px 10px;
+      }
+        /* Hero Section */
+       .hero {
+      position: relative;
+      background-color: #111;
+      color: #fff;
+      padding: 100px 0;
+      text-align: center;
+      overflow: hidden;
+  }
+
+    .hero img {
+      width: 100%;
+      height: auto;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      opacity: 0.5;
+  }
+
+    .hero h2 {
+      font-size: 3rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+  }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #ddd;
+      margin-bottom: 30px;
+  }
+
+   .btn-get-started {
+      padding: 12px 30px;
+      background-color: #007bff;
+      color: #fff;
+      font-size: 1.1rem;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+  }
+
+  .btn-get-started:hover {
+      background-color: #0056b3;
+  }
+
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+  .hero h2 {
+          font-size: 2rem;
+      }
+
+  .hero p {
+          font-size: 1rem;
+      }
+
+  .btn-get-started {
+          font-size: 1rem;
+      }
+  }
+
+
+  .image-container {
+    display: block; /* Ensure it takes up the full width */
+    text-align: center; /* Center align the content inside */
+    margin-top: 20px;
+    padding: 10px;
+    margin-left: 600px;
+    }
+
+  .uploaded-image {
+    width: 100%;
+    max-width: 200px;
+    margin-top: 300px;
+    height: 180px;
+    border-radius: 12px;
+    border: 2px solid #ff4d4d;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+  .uploaded-image:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+    margin-left: 50px;
+    }
+
+
+
+<!-- .image-container {-->
+<!--        display: flex;-->
+<!--        justify-content: center;-->
+<!--        margin-top: 20px;-->
+<!--        padding: 10px;-->
+<!--    }-->
+
+
+<!--    .uploaded-image {-->
+<!--        width: 100%;-->
+<!--        max-width: 350px; /* Slightly larger for better visibility */-->
+<!--        height: auto;-->
+<!--        border-radius: 12px;-->
+<!--        border: 2px solid #ff4d4d; /* Subtle red border to match fire theme */-->
+<!--        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);-->
+<!--        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */-->
+<!--    }-->
+
+<!--    .uploaded-image:hover {-->
+<!--        transform: scale(1.03); /* Slight zoom on hover */-->
+<!--        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);-->
+<!--    }-->
+
+    .prediction-box {
+        text-align: center;
+        font-size: 18px;
+        background: linear-gradient(135deg, #fff, #f8f8f8); /* Subtle gradient for depth */
+        padding: 20px;
+        margin-top: 100px;
+        border-radius: 12px;
+        border-left: 4px solid #ff4d4d; /* Red accent on the left */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        color: #333;
+        max-width: 350px; /* Match the image width */
+        margin-left: auto;
+        margin-right: 0.5px;
+    }
+
+    .prediction-box p {
+        margin: 8px 0; /* Better spacing between lines */
+        font-family: 'Arial', sans-serif; /* Consistent typography */
+    }
+
+    .prediction-box p strong {
+        color: #ff4d4d; /* Red color for labels to match fire theme */
+        font-weight: 700; /* Bold labels */
+    }
+
+    .prediction-box p span {
+        color: #555; /* Slightly lighter color for values */
+    }
+
+  </style>
+
+</head>
+
+<body class="index-page">
+
+    <div style="..." align="center">
+
+                    {% if messages %}
+
+                        {% for msg in messages %}
+
+                            {{ msg }}
+
+                        {% endfor %}
+
+                    {% endif %}
+
+            </div>
+
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+      <a href="index.html" class="logo d-flex align-items-center">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+         <img src="{% static 'sta\assets\img\weapon_logo.png' %}" alt="">
+        <h1 class="sitename">SAFEEYE</h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="#home" class="active">Home</a></li>
+          <li><a href="{% url 'user_profile' %}">Profile</a></li>
+          <li><a href="{% url 'logout' %}">Logout</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+    </div>
+  </header>
+  <main class="main">
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero section dark-background">
+    <!-- Background Image -->
+    <img src="{% static 'sta/assets/img/front.png' %}" alt="Weapon Detection" data-aos="fade-in">
+
+    <!-- Hero Content -->
+    <div class="container text-center" data-aos="fade-up" data-aos-delay="100">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div>
+                <h2>USER HOME</h2>
+                <p>Experience the power of weapon detection, delivering immediate alerts to keep your environment secure.</p>
+                </div>
+                <!-- Upload Form
+             <form method="POST" enctype="multipart/form-data" action="{% url 'user_home' %}" class="text-center">
+                    {% csrf_token %}
+                    <div class="upload-container">
+                        <label class="upload-box" for="fileUpload">
+                            <i class="fa fa-camera fa-3x text-primary"></i>
+                            <p>Upload Image or Video for Weapon Detection</p>
+                            <input type="file" id="fileUpload" name="media_file" accept="image/*,video/*"
+                                   onchange="previewMedia(event)">
+                        </label>
+                        <div id="mediaPreview" class="media-preview"> -->
+                            <!-- Media Preview will be shown here -->
+                <!--    </div>
+                    </div>
+                    <button type="submit" class="btn btn-upload">Detect Weapon</button>
+                    {% if image_data %}
+                    <div class="image-container">
+                        <img src="data:image/jpeg;base64,{{ image_data }}" alt="Uploaded Image" class="uploaded-image">
+                    </div>
+                    <div class="prediction-box">
+                        <p><strong>Confidence:</strong> <span>{{ confidence|floatformat:2 }}%</span></p>
+                        <p><strong>Classification:</strong> <span>{{ label }}</span></p>
+                    </div>
+                    {% endif %}
+                </form> -->
+              <div>
+                <article>
+                    <footer>
+                        <ul class="nospace inline pushright">
+                            <li>
+                                <form enctype="multipart/form-data" method="post" style="display: inline;">
+                                    {% csrf_token %}
+                                    <input accept="image/*" id="image-upload" name="image"
+                                           onchange="this.form.submit();" style="display: none;" type="file">
+                                    <label class="btn-get-started" for="image-upload">Image</label>
+                                </form>
+                            </li>
+                        </ul>
+                    </footer>
+<!--                    <footer>-->
+<!--                        <ul class="nospace inline pushright">-->
+<!--                            <li>-->
+<!--                                <form enctype="multipart/form-data" method="post" style="display: inline;">-->
+<!--                                    {% csrf_token %}-->
+<!--                                    <input accept="image/*" id="image-upload" name="image" onchange="this.form.submit();"-->
+<!--                                           style="display: none;" type="file">-->
+<!--                                    <label class="btn-get-started" for="image-upload">Image</label>-->
+<!--                                </form>-->
+<!--                            </li>-->
+<!--                        </ul>-->
+<!--                    </footer>-->
+                    <!-- Display uploaded image and prediction results -->
+                    {% if image_data %}
+
+                    <div class="image-container" style="text-align: center;">
+                        <img alt="Uploaded Image" class="uploaded-image" src="data:image/jpeg;base64,{{ image_data }}" >
+
+                    </div>
+                    <div>
+                        <label><a href="#" id="open-cam" class="btn">LIVE</a></label>
+                    </div>
+
+<!--                    <div class="image-container" style="display: flex; justify-content: center; align-items: center; height: 100px;">-->
+<!--                        <img alt="Uploaded Image" class="uploaded-image" src="data:image/jpeg;base64,{{ image_data }}">-->
+<!--                    </div>-->
+                    <div class="prediction-box">
+                        <p><strong>Confidence:</strong> <span>{{ confidence|floatformat:2 }}%</span></p>
+                        <p><strong>Classification:</strong> <span>{{ label }}</span></p>
+                    </div>
+                    {% endif %}
+                </article>
+                </div>
+                <!-- Call to Action Button -->
+
+            </div>
+        </div>
+    </div>
+        <div class="webcam-container" id="webcam-container">
+        <img id="webcam-feed" class="webcam-feed" src="" alt="Webcam Feed">
+        <div class="btn-container">
+          <button id="stop-cam" class="btn" style="display: none;">Stop Camera</button>
+        </div>
+      </div>
+</section><!-- /Hero Section -->
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+            <h2>About</h2>
+            <p><span>Learn More</span> <span class="description-title">About Us<br></span></p>
+        </div><!-- End Section Title -->
+
+        <div class="container">
+
+            <div class="row gy-5">
+
+                <div class="content col-xl-5 d-flex flex-column" data-aos="fade-up" data-aos-delay="100">
+                    <h3>Weapon (Knife and Gun) Detection and Alerting System</h3>
+                    <p>
+                        Our advanced weapon detection system identifies potential threats, including knives and guns, in real-time. It instantly alerts authorities to ensure swift action for public safety.
+                    </p>
+                    <a href="#about" class="about-btn align-self-center align-self-xl-start">
+                        <span>Learn More</span>
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                </div><!-- End content -->
+
+                <div class="col-xl-7" data-aos="fade-up" data-aos-delay="200">
+                    <div class="row gy-4">
+
+                        <div class="col-md-6 icon-box position-relative">
+                            <i class="bi bi-gun"></i> <!-- Icon for gun detection -->
+                            <h4><a href="" class="stretched-link">Gun Detection</a></h4>
+                            <p>Our system instantly detects firearms, alerting authorities immediately to prevent potential threats.</p>
+                        </div><!-- Icon-Box -->
+
+                        <div class="col-md-6 icon-box position-relative">
+                            <i class="bi bi-knife"></i> <!-- Icon for knife detection -->
+                            <h4><a href="" class="stretched-link">Knife Detection</a></h4>
+                            <p>The system identifies knives, triggering real-time alerts to ensure safety.</p>
+                        </div><!-- Icon-Box -->
+
+                        <div class="col-md-6 icon-box position-relative">
+                            <i class="bi bi-bell"></i> <!-- Icon for alert system -->
+                            <h4><a href="" class="stretched-link">Instant Alerts</a></h4>
+                            <p>Immediate notifications sent to security or law enforcement agencies to respond swiftly to threats.</p>
+                        </div><!-- Icon-Box -->
+
+                        <div class="col-md-6 icon-box position-relative">
+                            <i class="bi bi-shield-lock"></i> <!-- Icon for security -->
+                            <h4><a href="" class="stretched-link">Enhanced Security</a></h4>
+                            <p>Ensures public safety by detecting weapons early and enabling proactive measures to protect the community.</p>
+                        </div><!-- Icon-Box -->
+
+                    </div><!-- End row -->
+                </div><!-- End col-xl-7 -->
+
+            </div><!-- End row -->
+
+        </div><!-- End container -->
+
+    </section><!-- /About Section -->
+
+
+    <!-- Services Section -->
+    <section id="services" class="services section">
+
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+            <h2>Our Services</h2>
+            <p>Discover how our <span class="description-title">Weapon Detection</span> system can keep you safe.</p>
+        </div><!-- End Section Title -->
+
+        <div class="container">
+
+            <div class="row gy-4">
+
+                <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-item position-relative">
+                        <div class="icon"><i class="bi bi-gun icon"></i></div> <!-- Icon for gun detection -->
+                        <h4><a href="" class="stretched-link">Real-Time Gun Detection</a></h4>
+                        <p>Our system instantly detects weapon(gun and knife) and immediately alerts authorities to prevent potential threats. A weapon detection and alerting system uses advanced algorithms to identify and track weapons in real-time, enhancing security in public and high-risk areas. Upon detecting a weapon, the system immediately sends alerts to security personnel, enabling rapid response and intervention.</p>
+                    </div>
+                </div><!-- End Service Item -->
+
+                <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-item position-relative">
+                        <div class="icon"><i class="bi bi-knife icon"></i></div> <!-- Icon for knife detection -->
+                        <h4><a href="" class="stretched-link">Knife Detection</a></h4>
+                        <p>Detects knives in real-time, our advanced knife detection service uses cutting-edge machine learning models to identify potential threats in real-time, ensuring safety across various environments ensuring immediate alerts to security personnel.</p>
+                    </div>
+                </div><!-- End Service Item -->
+
+                <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-item position-relative">
+                        <div class="icon"><i class="bi bi-bell icon"></i></div> <!-- Icon for alerts -->
+                        <h4><a href="" class="stretched-link">Instant Alerts</a></h4>
+                        <p>Automatic notifications are sent to law enforcement or security for a fast response to threats.</p>
+                    </div>
+                </div><!-- End Service Item -->
+
+                <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="400">
+                    <div class="service-item position-relative">
+                        <div class="icon"><i class="bi bi-shield-lock icon"></i></div> <!-- Icon for security -->
+                        <h4><a href="" class="stretched-link">Enhanced Security</a></h4>
+                        <p>Provides proactive protection by detecting weapons early, ensuring public safety at all times.</p>
+                    </div>
+                </div><!-- End Service Item -->
+
+            </div>
+
+        </div>
+
+    </section><!-- /Services Section -->
+
+
+    <!-- Features Section -->
+    <section id="features" class="features section">
+
+        <div class="container">
+
+            <div class="row gy-4">
+
+                <!-- Feature 1: Real-Time Weapon Detection -->
+                <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="features-item">
+                        <i class="bi bi-eye" style="color: #ffbb2c;"></i>
+                        <h3><a href="" class="stretched-link">Real-Time Weapon Detection</a></h3>
+                    </div>
+                </div><!-- End Feature Item -->
+
+                <!-- Feature 2: Instant Alerts -->
+                <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="features-item">
+                        <i class="bi bi-bell" style="color: #5578ff;"></i>
+                        <h3><a href="" class="stretched-link">Instant Alerts</a></h3>
+                    </div>
+                </div><!-- End Feature Item -->
+
+                <!-- Feature 3: Continuous Monitoring -->
+                <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="features-item">
+                        <i class="bi bi-camera-video" style="color: #e80368;"></i>
+                        <h3><a href="" class="stretched-link">24/7 Continuous Monitoring</a></h3>
+                    </div>
+                </div><!-- End Feature Item -->
+
+                <!-- Feature 4: AI-Powered Detection -->
+                <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="features-item">
+                        <i class="bi bi-brain" style="color: #e361ff;"></i>
+                        <h3><a href="" class="stretched-link">AI-Powered Detection</a></h3>
+                    </div>
+                </div><!-- End Feature Item -->
+
+                <!-- Feature 5: User-Friendly Interface -->
+                <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="500">
+                    <div class="features-item">
+                        <i class="bi bi-laptop" style="color: #47aeff;"></i>
+                        <h3><a href="" class="stretched-link">User-Friendly Interface</a></h3>
+                    </div>
+                </div><!-- End Feature Item -->
+
+                <!-- Feature 6: Scalable Solution -->
+                <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="600">
+                    <div class="features-item">
+                        <i class="bi bi-arrows-move" style="color: #ffa76e;"></i>
+                        <h3><a href="" class="stretched-link">Scalable Solution</a></h3>
+                    </div>
+                </div><!-- End Feature Item -->
+
+                <!-- Feature 7: High Accuracy -->
+                <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="700">
+                    <div class="features-item">
+                        <i class="bi bi-check-circle" style="color: #11dbcf;"></i>
+                        <h3><a href="" class="stretched-link">High Accuracy</a></h3>
+                    </div>
+                </div><!-- End Feature Item -->
+
+                <!-- Feature 8: Multi-Device Compatibility -->
+                <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="800">
+                    <div class="features-item">
+                        <i class="bi bi-phone" style="color: #4233ff;"></i>
+                        <h3><a href="" class="stretched-link">Multi-Device Compatibility</a></h3>
+                    </div>
+                </div><!-- End Feature Item -->
+
+            </div>
+
+        </div>
+
+    </section><!-- /Features Section -->
+
+    <!-- Call To Action Section -->
+    <section id="call-to-action" class="call-to-action section dark-background">
+
+        <img src="{% static 'sta\assets\img\safeeye.jpeg' %}" alt="Weapon Detection Background">
+
+        <div class="container">
+            <div class="row justify-content-center" data-aos="zoom-in" data-aos-delay="100">
+                <div class="col-xl-10">
+                    <div class="text-center">
+                        <h3>Enhance Security with Our Weapon Detection System</h3>
+                        <p>Protect your environment with our advanced AI-powered gun and knife detection and alerting system. Our solution identifies potential threats in real-time, providing rapid alerts to ensure safety in public spaces, workplaces, and more.</p>
+                        <a class="cta-btn" href="#">Get Started Today</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section><!-- /Call To Action Section -->
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio section">
+
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+            <h2>Our Portfolio</h2>
+            <p><span>Explore Our</span> <span class="description-title">Weapon Detection Solutions</span></p>
+        </div><!-- End Section Title -->
+
+        <div class="container">
+
+            <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
+
+                <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
+                    <li data-filter="*" class="filter-active">All</li>
+                    <li data-filter=".filter-gun">Gun Detection</li>
+                    <li data-filter=".filter-knife">Knife Detection</li>
+                </ul>
+
+            </div><!-- End isotope-layout -->
+        </div><!-- End container -->
+
+    </section><!-- /Portfolio Section -->
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq section">
+
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+            <h2>Frequently Asked Questions</h2>
+            <p><span>Get Answers to Your</span> <span class="description-title">Weapon Detection Queries</span></p>
+        </div><!-- End Section Title -->
+
+        <div class="container">
+
+            <div class="row justify-content-center">
+
+                <div class="col-lg-10" data-aos="fade-up" data-aos-delay="100">
+
+                    <div class="faq-container">
+                        <div class="faq-item faq-active">
+                            <h3>What types of weapons can your system detect?</h3>
+                            <div class="faq-content">
+                                <p>Our system is designed to detect both guns and knives in real-time using advanced machine learning algorithms and AI-powered image recognition technology.</p>
+                            </div>
+                            <i class="faq-toggle bi bi-chevron-right"></i>
+                        </div><!-- End Faq item-->
+
+                        <div class="faq-item">
+                            <h3>How accurate is the weapon detection system?</h3>
+                            <div class="faq-content">
+                                <p>Our detection system is highly accurate, with a low false positive rate, ensuring reliable threat identification in real-world environments.</p>
+                            </div>
+                            <i class="faq-toggle bi bi-chevron-right"></i>
+                        </div><!-- End Faq item-->
+
+                        <div class="faq-item">
+                            <h3>Can the system provide real-time alerts?</h3>
+                            <div class="faq-content">
+                                <p>Yes, the system provides immediate alerts to security personnel when a weapon is detected, enabling rapid response and action to prevent incidents.</p>
+                            </div>
+                            <i class="faq-toggle bi bi-chevron-right"></i>
+                        </div><!-- End Faq item-->
+
+                    </div><!-- End faq-container -->
+
+                </div><!-- End col-lg-10 -->
+
+            </div><!-- End row -->
+
+        </div><!-- End container -->
+
+    </section><!-- /Faq Section -->
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+            <h2>Contact</h2>
+            <p><span>Need Help?</span> <span class="description-title">Get In Touch</span></p>
+        </div><!-- End Section Title -->
+
+        <div class="container">
+
+            <div class="row justify-content-center">
+
+                <div class="col-lg-8" data-aos="fade-up" data-aos-delay="100">
+                    <form action="#" method="post">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="name" placeholder="Your Name" required>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="email" class="form-control" name="email" placeholder="Your Email" required>
+                            </div>
+                            <div class="col-12">
+                                <textarea class="form-control" name="message" rows="5" placeholder="Your Message" required></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn-send">Send Message</button>
+                            </div>
+                        </div>
+                    </form>
+                </div><!-- End col-lg-8 -->
+
+            </div><!-- End row -->
+
+        </div><!-- End container -->
+
+    </section><!-- /Contact Section -->
+
+</main><!-- /Main -->
+
+
+  <footer id="footer" class="footer dark-background">
+
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-5 col-md-12 footer-about">
+          <a href="index.html" class="logo d-flex align-items-center">
+            <span class="sitename">Weapon Detection</span>
+          </a>
+          <p>Our advanced weapon detection system ensures the safety of your premises by detecting guns and knives in real time, providing immediate alerts to security personnel for prompt action.</p>
+          <div class="social-links d-flex mt-4">
+            <a href=""><i class="bi bi-twitter-x"></i></a>
+            <a href=""><i class="bi bi-facebook"></i></a>
+            <a href=""><i class="bi bi-instagram"></i></a>
+            <a href=""><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-6 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-6 footer-links">
+          <h4>Our Services</h4>
+          <ul>
+            <li><a href="#">Weapon Detection System</a></li>
+            <li><a href="#">Security Alert Solutions</a></li>
+            <li><a href="#">Real-time Threat Monitoring</a></li>
+            <li><a href="#">Customizable Security Systems</a></li>
+            <li><a href="#">AI-Powered Threat Recognition</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+          <h4>Contact Us</h4>
+          <p>ABC</p>
+          <p>ABC, Ernakulam, Kerala</p>
+          <p>India</p>
+          <p class="mt-4"><strong>Phone:</strong> <span>+91 965669 70127</span></p>
+          <p><strong>Email:</strong> <span>admin@gmail.com</span></p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">SafeEye</strong> <span>All Rights Reserved</span></p>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+
+      </div>
+    </div>
+
+  </footer>
+
+
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'sta/assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'sta/assets/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'sta/assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'sta/assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'sta/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+  <script src="{% static 'sta/assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'sta/assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+
+  <!-- Main JS File -->
+  <script src="{% static 'sta/assets/js/main.js' %}"></script>
+    <!-- Audio for alarm -->
+<!-- Audio for alarm -->
+<audio id="alarm" src="{% static 'alarm.mp3' %}" preload="auto"></audio>
+
+<!-- Webcam and Alarm Logic -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const openCamBtn = document.getElementById('open-cam');
+    const stopCamBtn = document.getElementById('stop-cam');
+    const webcamContainer = document.getElementById('webcam-container');
+    const webcamFeed = document.getElementById('webcam-feed');
+    const alarm = document.getElementById('alarm');
+    let weaponDetected = false;
+
+    // Open camera
+    openCamBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        webcamFeed.src = "{% url 'open_camera' %}";
+        webcamContainer.style.display = 'flex';
+        openCamBtn.style.display = 'none';
+        stopCamBtn.style.display = 'inline-block';
+    });
+
+    // Stop camera
+    stopCamBtn.addEventListener('click', function () {
+        fetch("{% url 'stop_camera' %}")
+            .then(response => response.json())
+            .then(data => {
+                webcamFeed.src = '';
+                webcamContainer.style.display = 'none';
+                openCamBtn.style.display = 'inline-block';
+                stopCamBtn.style.display = 'none';
+                alarm.pause();
+                alarm.currentTime = 0; // Reset alarm
+                weaponDetected = false;
+            });
+    });
+
+    // Polling function for weapon detection alert
+    function pollWeaponAlert() {
+        if (webcamContainer.style.display === 'flex') {
+            fetch('/weapon-alert-status/')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.weapon_detected && !weaponDetected) {
+                        weaponDetected = true;
+                        alarm.play().catch(err => {
+                            console.warn("Autoplay error:", err);
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error polling weapon alert status:', error);
+                });
+        }
+    }
+
+    // Start polling every 3 seconds
+    setInterval(pollWeaponAlert, 3000);
+});
+
+    function previewMedia(event) {
+        const previewContainer = document.getElementById('mediaPreview');
+        const file = event.target.files[0];
+        previewContainer.innerHTML = ''; // Clear previous preview
+
+        if (file) {
+            const fileType = file.type.split('/')[0];
+
+            if (fileType === 'image') {
+                const imagePreview = document.createElement('img');
+                imagePreview.src = URL.createObjectURL(file);
+                imagePreview.classList.add('image-preview');
+                previewContainer.appendChild(imagePreview);
+            } else if (fileType === 'video') {
+                const videoPreview = document.createElement('video');
+                videoPreview.controls = true;
+                videoPreview.src = URL.createObjectURL(file);
+                videoPreview.classList.add('video-preview');
+                previewContainer.appendChild(videoPreview);
+            }
+        }
+    }
+</script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
